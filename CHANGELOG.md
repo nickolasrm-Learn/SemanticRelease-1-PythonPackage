@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/2.0.0...2.0.1) (2023-07-19)
+
+
+### Bug Fixes
+
+* fixed pr merge not triggering workflow ([#7](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/issues/7)) ([730dbc0](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/commit/730dbc014cbe0f3f97cf1fd2e5929565d4abaf81))
+
 ## [2.0.1-rc.1](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/2.0.0...2.0.1-rc.1) (2023-07-19)
 
 
