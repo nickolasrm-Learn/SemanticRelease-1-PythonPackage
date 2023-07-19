@@ -1,0 +1,43 @@
+name: release
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        type: string
+        description: "Python version"
+        required: false
+        default: "3.8"
+    secrets:
+      gh-token:
+        description: "GitHub token"
+        required: true
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python-version }}
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Install Semantic Release
+        run: |
+          npm install -g semantic-release@21.0.7 \
+            semantic-release-replace-plugin@1.2.6 \
+            @semantic-release/changelog@6.0.3 \
+            @semantic-release/exec@6.0.3 \
+            @semantic-release/git@10.0.1 \
+            @semantic-release/github@9.0.4 \
+            conventional-changelog-conventionalcommits@6.1.0
+      - name: Semantic Release
+        run: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.gh-token }}
