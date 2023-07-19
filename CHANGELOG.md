@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/1.1.0...2.0.0) (2023-07-19)
+
+
+### Code Refactoring
+
+* removed add function ([54a41ac](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/commit/54a41acf89618a952834b2e4a20848bf3c592129))
+
+
+### BREAKING CHANGES
+
+* function add no longer available
+
 ## [1.1.0](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/1.0.0...1.1.0) (2023-07-19)
 
 
