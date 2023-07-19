@@ -23,11 +23,9 @@ plugins:
   # Create or update the changelog file.
   - - "@semantic-release/changelog"
     - changelogFile: &changelog "CHANGELOG.md"
-  # Build the packag binaries.
+  # Build the package binaries.
   - - "@semantic-release/exec"
-    - prepareCmd: |
-        make install
-        make build
+    - prepareCmd: make install && make build
   # Publish the package to GitHub.
   - - "@semantic-release/github"
     - assets:
