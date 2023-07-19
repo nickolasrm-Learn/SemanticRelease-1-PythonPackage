@@ -1,0 +1,39 @@
+branches:
+  - name: master
+    prerelease: false
+  - name: stg
+    prerelease: true
+repositoryUrl: https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage
+tagFormat: ${version}
+plugins:
+  # Analyze commits to determine the next semantic version.
+  - "@semantic-release/commit-analyzer"
+  # Generate release notes for the commits added since the last release.
+  - "@semantic-release/release-notes-generator"
+  # Update the version of the 'pyproject.toml' file.
+  - - "semantic-release-python"
+    - setupPy: &pyproject "pyproject.toml"
+  # Update the version of the '__init__.py' file.
+  - - "semantic-release-replace-plugin"
+    - replacements:
+        - files:
+            - &init "semrel_mypkg/__init__.py"
+          from: "__version__ = \".*\""
+          to: "__version__ = \"${nextRelease.version}\""
+  # Create or update the changelog file.
+  - - "@semantic-release/changelog"
+    - changelogFile: &changelog "CHANGELOG.md"
+  # Build the package binaries.
+  - - "@semantic-release/exec"
+    - prepareCmd: make install && make build
+  # Publish the package to GitHub.
+  - - "@semantic-release/github"
+    - assets:
+        - dist/*.whl
+        - dist/*.tar.gz
+  # Commit the version change and the changelog file.
+  - - "@semantic-release/git"
+    - assets:
+      - *pyproject
+      - *init
+      - *changelog
