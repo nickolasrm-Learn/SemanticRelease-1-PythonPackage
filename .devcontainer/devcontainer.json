@@ -17,7 +17,6 @@
 			"extensions": [
 				"ms-python.python",
 				"njpwerner.autodocstring",
-				"vivaxy.vscode-conventional-commits",
 				"ms-azuretools.vscode-docker",
 				"GitHub.copilot",
 				"ms-python.isort",
@@ -25,7 +24,8 @@
 				"ms-python.vscode-pylance",
 				"shinichi-takii.sql-bigquery",
 				"m-ahmadkhan.bq-formatter-vscode",
-				"redhat.vscode-yaml"
+				"redhat.vscode-yaml",
+				"KnisterPeter.vscode-commitizen"
 			]
 		}
 	},

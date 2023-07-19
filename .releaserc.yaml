@@ -1,7 +1,7 @@
 branches:
   - name: master
     prerelease: false
-  - name: stg
+  - name: .* 
     prerelease: "rc"
 repositoryUrl: https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage
 tagFormat: ${version}
@@ -9,72 +9,9 @@ plugins:
   # Analyze commits to determine the next semantic version.
   - - "@semantic-release/commit-analyzer"
     - preset: "angular"
-      releaseRules:
-        - type: "feat"
-          release: "minor"
-        - type: "fix"
-          release: "patch"
-        - type: "docs"
-          release: "patch"
-        - type: "refactor"
-          release: "patch"
-        - type: "style"
-          release: "patch"
-        - type: "perf"
-          release: "patch"
-        - type: "test"
-          release: "patch"
-        - type: "build"
-          release: "patch"
-        - type: "ci"
-          release: "patch"
-        - type: "chore"
-          release: "patch"
-        - type: "revert"
-          release: "patch"
-      parserOpts:
-        noteKeywords: &breaking-opts
-          - "BREAKING"
   # Generate release notes for the commits added since the last release.
   - - "@semantic-release/release-notes-generator"
-    - preset: "conventionalcommits"
-      parserOpts:
-        noteKeywords: *breaking-opts
-      presetConfig:
-        types:
-          - type: "fix"
-            section": "🐛 Fixes"
-            hidden": false
-          - type: "feat"
-            section: "✨ Features"
-            hidden: false
-          - type: "docs"
-            section: "📝 Docs"
-            hidden: false
-          - type: "style"
-            section: "🎨 Style"
-            hidden: false
-          - type: "refactor"
-            section: "♻️ Refactor"
-            hidden: false
-          - type: "perf"
-            section: "⚡ Performance"
-            hidden: false
-          - type: "test"
-            section: "⚗️ Tests"
-            hidden: false
-          - type: "build"
-            section: "🏗️ Build"
-            hidden: false
-          - type: "ci"
-            section: "👷 CI/CD"
-            hidden: false
-          - type: "chore"
-            section: "🧹 Chore"
-            hidden: false
-          - type: "revert"
-            section: "⏪ Revert"
-            hidden: false
+    - preset: "angular"
   # Update the version of the '__init__.py' file.
   - - "semantic-release-replace-plugin"
     - replacements:
