@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "semanticrelease-1-pythonpackage"
-version = "1.0.0"
+version = "1.1.0"
 description = ""
 authors = ["nickolasrm <nickolasrochamachado@gmail.com>"]
 readme = "README.md"

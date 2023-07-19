@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/1.0.0...1.1.0) (2023-07-19)
+
+
+### ✨ Features
+
+* :sparkles:  added sub function ([#4](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/issues/4)) ([eda6c4b](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/commit/eda6c4b4115e0d74a24bdca754124874bdfd8f28))
+
 ## 1.0.0 (2023-07-19)
 
 
