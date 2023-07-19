@@ -1,3 +1,10 @@
+## [2.0.1-rc.1](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/2.0.0...2.0.1-rc.1) (2023-07-19)
+
+
+### Bug Fixes
+
+* fixed semantic release all branches ([8016399](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/commit/80163999e7e8b94ca5fe879e4f943b5c5d6b4cf6))
+
 # [2.0.0](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/1.1.0...2.0.0) (2023-07-19)
 
 

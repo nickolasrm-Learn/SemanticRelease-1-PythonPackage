@@ -1,7 +1,7 @@
 branches:
   - name: master
     prerelease: false
-  - name: .* 
+  - name: "**"
     prerelease: "rc"
 repositoryUrl: https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage
 tagFormat: ${version}
