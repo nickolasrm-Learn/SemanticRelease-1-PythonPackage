@@ -1,10 +1,17 @@
 name: release
 
 on:
-  push:
-    branches:
-      - master
-      - stg
+  workflow_call:
+    inputs:
+      python-version:
+        type: string
+        description: "Python version"
+        required: false
+        default: "3.8"
+    secrets:
+      gh-token:
+        description: "GitHub token"
+        required: true
 
 jobs:
   release:
@@ -16,14 +23,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.8"
-      - name: Install dependencies
-        run: make install
-      - name: Test
-        run: make test
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v3
+          python-version: ${{ inputs.python-version }}
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          semantic_version: 21
+          node-version: "18"
+      - name: Install Semantic Release
+        run: |
+          npm install -g semantic-release@21.0.7 \
+            semantic-release-replace-plugin@1.2.6 \
+            @semantic-release/changelog@6.0.3 \
+            @semantic-release/exec@6.0.3 \
+            @semantic-release/git@10.0.1 \
+            @semantic-release/github@9.0.4 \
+            conventional-changelog-conventionalcommits@6.1.0
+      - name: Semantic Release
+        run: semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.gh-token }}
