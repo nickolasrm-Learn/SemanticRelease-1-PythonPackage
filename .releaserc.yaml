@@ -2,24 +2,90 @@ branches:
   - name: master
     prerelease: false
   - name: stg
-    prerelease: true
+    prerelease: "rc"
 repositoryUrl: https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage
 tagFormat: ${version}
 plugins:
   # Analyze commits to determine the next semantic version.
-  - "@semantic-release/commit-analyzer"
+  - - "@semantic-release/commit-analyzer"
+    - preset: "angular"
+      releaseRules:
+        - type: "feat"
+          release: "minor"
+        - type: "fix"
+          release: "patch"
+        - type: "docs"
+          release: "patch"
+        - type: "refactor"
+          release: "patch"
+        - type: "style"
+          release: "patch"
+        - type: "perf"
+          release: "patch"
+        - type: "test"
+          release: "patch"
+        - type: "build"
+          release: "patch"
+        - type: "ci"
+          release: "patch"
+        - type: "chore"
+          release: "patch"
+        - type: "revert"
+          release: "patch"
+      parserOpts:
+        noteKeywords: &breaking-opts
+          - "BREAKING"
   # Generate release notes for the commits added since the last release.
-  - "@semantic-release/release-notes-generator"
-  # Update the version of the 'pyproject.toml' file.
-  - - "semantic-release-python"
-    - setupPy: &pyproject "pyproject.toml"
+  - - "@semantic-release/release-notes-generator"
+    - preset: "conventionalcommits"
+      parserOpts:
+        noteKeywords: *breaking-opts
+      presetConfig:
+        types:
+          - type: "fix"
+            section": "🐛 Fixes"
+            hidden": false
+          - type: "feat"
+            section: "✨ Features"
+            hidden: false
+          - type: "docs"
+            section: "📝 Docs"
+            hidden: false
+          - type: "style"
+            section: "🎨 Style"
+            hidden: false
+          - type: "refactor"
+            section: "♻️ Refactor"
+            hidden: false
+          - type: "perf"
+            section: "⚡ Performance"
+            hidden: false
+          - type: "test"
+            section: "⚗️ Tests"
+            hidden: false
+          - type: "build"
+            section: "🏗️ Build"
+            hidden: false
+          - type: "ci"
+            section: "👷 CI/CD"
+            hidden: false
+          - type: "chore"
+            section: "🧹 Chore"
+            hidden: false
+          - type: "revert"
+            section: "⏪ Revert"
+            hidden: false
   # Update the version of the '__init__.py' file.
   - - "semantic-release-replace-plugin"
     - replacements:
         - files:
-            - &init "semrel_mypkg/__init__.py"
-          from: "__version__ = \".*\""
-          to: "__version__ = \"${nextRelease.version}\""
+            - &init "semrel_pypkg/__init__.py"
+          from: '__version__ = ".*"'
+          to: '__version__ = "${nextRelease.version}"'
+        - files:
+            - &pyproject "pyproject.toml"
+          from: '^version = ".*"'
+          to: 'version = "${nextRelease.version}"'
   # Create or update the changelog file.
   - - "@semantic-release/changelog"
     - changelogFile: &changelog "CHANGELOG.md"
@@ -34,6 +100,6 @@ plugins:
   # Commit the version change and the changelog file.
   - - "@semantic-release/git"
     - assets:
-      - *pyproject
-      - *init
-      - *changelog
+        - *pyproject
+        - *init
+        - *changelog
