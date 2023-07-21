@@ -11,7 +11,8 @@ install-semrel:  ## Install semantic release dependencies.
    		@semantic-release/changelog@6.0.3 \
      	@semantic-release/exec@6.0.3 \
       	@semantic-release/git@10.0.1 \
-       	@semantic-release/github@9.0.4
+       	@semantic-release/github@9.0.4 \
+		conventional-changelog-conventionalcommits@6.1.0
 
 build:  ## Build the package.
 	poetry build

@@ -9,9 +9,68 @@ plugins:
   # Analyze commits to determine the next semantic version.
   - - "@semantic-release/commit-analyzer"
     - preset: "angular"
+      parserOpts:
+        noteKeywords: &breaking
+          - "BREAKING CHANGE"
+          - "BREAKING CHANGES"
+      releaseRules:
+        # The first two rules are required because releaseRules have precedence over
+        # default rules, which means if a 'style' type is matches for example, it will
+        # be released as a 'patch' even if it contains a 'BREAKING CHANGE' footer.
+        # See: https://github.com/semantic-release/commit-analyzer/blob/75c9c87c88772d7ded4ca9614852b42519e41931/index.js#L50
+        - breaking: true
+          release: "major"
+        - revert: true
+          release: "patch"
+        - type: "feat"
+          release: "minor"
+        - type: "fix"
+          release: "patch"
+        - type: "perf"
+          release: "patch"
+        - type: "docs"
+          release: "patch"
+        - type: "style"
+          release: "patch"
+        - type: "refactor"
+          release: "patch"
+        - type: "test"
+          release: "patch"
+        - type: "build"
+          release: "patch"
+        - type: "ci"
+          release: "patch"
+        - type: "chore"
+          release: "patch"
   # Generate release notes for the commits added since the last release.
   - - "@semantic-release/release-notes-generator"
-    - preset: "angular"
+    - preset: "conventionalcommits"
+      parserOpts:
+        noteKeywords: *breaking
+      presetConfig:
+        types:
+          - type: "feat"
+            section: ":sparkles: Features"
+          - type: "fix"
+            section: ":bug: Bug Fixes"
+          - type: "perf"
+            section: ":zap: Performance Improvements"
+          - type: "revert"
+            section: ":rewind: Reverts"
+          - type: "docs"
+            section: ":memo: Documentation"
+          - type: "style"
+            section: ":art: Styles"
+          - type: "chore"
+            section: ":wrench: Miscellaneous Chores"
+          - type: "refactor"
+            section: ":recycle: Code Refactoring"
+          - type: "test"
+            section: ":test_tube: Tests"
+          - type: "build"
+            section: ":building_construction: Build System"
+          - type: "ci"
+            section: ":construction_worker: Continuous Integration"
   # Update the version of the '__init__.py' file.
   - - "semantic-release-replace-plugin"
     - replacements:
@@ -30,10 +89,10 @@ plugins:
   - - "@semantic-release/exec"
     - prepareCmd: make install && make build
   # Publish the package to GitHub.
-  - - "@semantic-release/github"
-    - assets:
-        - dist/*.whl
-        - dist/*.tar.gz
+  #- - "@semantic-release/github"
+  #  - assets:
+  #      - dist/*.whl
+  #      - dist/*.tar.gz
   # Commit the version change and the changelog file.
   - - "@semantic-release/git"
     - assets:
