@@ -89,10 +89,10 @@ plugins:
   - - "@semantic-release/exec"
     - prepareCmd: make install && make build
   # Publish the package to GitHub.
-  #- - "@semantic-release/github"
-  #  - assets:
-  #      - dist/*.whl
-  #      - dist/*.tar.gz
+  - - "@semantic-release/github"
+    - assets:
+        - dist/*.whl
+        - dist/*.tar.gz
   # Commit the version change and the changelog file.
   - - "@semantic-release/git"
     - assets:
