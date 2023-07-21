@@ -1,3 +1,24 @@
+## [3.0.0](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/2.0.1...3.0.0) (2023-07-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* breaking change test
+
+### :bug: Bug Fixes
+
+* added github plugin back ([5ba2460](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/commit/5ba2460f99c56d9308a61a160ab4f9c75136b0a5))
+
+
+### :memo: Documentation
+
+* enriched readme ([#9](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/issues/9)) ([623ca97](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/commit/623ca973539a595f18418a668488eebb555612cb))
+
+
+### :wrench: Miscellaneous Chores
+
+* breaking change test ([73a360e](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/commit/73a360e11f05287a906e0ff34894fd526385357d))
+
 ## [2.0.1](https://github.com/nickolasrm-Learn/SemanticRelease-1-PythonPackage/compare/2.0.0...2.0.1) (2023-07-19)
 
 
